@@ -25,9 +25,7 @@ npm i vuepress-plugin-demo-container --save-dev
 ```js
 module.exports = {
   ...
-  plugins: [
-    require('demo-container')
-  ]
+  plugins: ['demo-container']
   ...
 }
 ```
