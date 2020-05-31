@@ -9,6 +9,11 @@ jobs:
     steps: 
       - uses: actions/checkout@master
 
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
       - name: Build with vuepress
         run: |
           npm ci
