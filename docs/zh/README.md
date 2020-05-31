@@ -5,7 +5,7 @@
 ::: warning 使用 Vuepress 编写组件示例有以下尴尬之处：
 组件示例和示例代码本质上一样，却需要写两遍；
 
-Vuepress 无法渲染 Markdown 中的 `export default {}` 代码块；
+Vuepress 无法渲染 Markdown 中多个 `export default {}` 代码块；
 :::
 
 Demo Container 参考了 Element UI 的文档渲染，实现了和它一样的，可在 Markdown 中直接编写示例的语法。

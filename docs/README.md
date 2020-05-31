@@ -5,7 +5,7 @@
 ::: warning Using Vuepress to write component examples has the following embarrassment:
 Component examples and sample code are essentially the same, but need to be written twice;
 
-Vuepress cannot render the `export default {}` code block in Markdown;
+Vuepress cannot render multiple `export default {}` code blocks in Markdown;
 :::
 
 The Demo Container refers to Element UI's document rendering and implements the same syntax as it can be used to write sample syntax directly in Markdown.
