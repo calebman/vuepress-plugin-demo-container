@@ -1,0 +1,20 @@
+name: Deploy plugin docs
+on:
+  push:
+    branches:    
+      - master
+jobs:
+  build-and-deploy-docs:
+    runs-on: ubuntu-18.04
+    steps: 
+      - uses: actions/checkout@master
+
+      - name: Build with vuepress
+        run: npm ci
+        run: npm run docs:build
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/.vuepress/dist/vuepress-plugin-demo-container/
