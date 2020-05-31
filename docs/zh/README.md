@@ -187,6 +187,13 @@ export default {
 
 这么做的问题是 **template 代码块中不能包含 Vuepress 中全局注册的组件**，而编写组件库示例必然会依赖全局注册的组件。
 
+### vuepress-plugin-demo-code
+
+仓库地址 [点此查看](https://github.com/BuptStEve/vuepress-plugin-demo-code)，该插件的**使用方式和 demo-block 一样属于理想方式**，插件的工作流程和 Demo Container 有相似之处，其实现原理是：
+
+通过 [Vuepress extendMarkdown API](https://vuepress.vuejs.org/zh/plugin/option-api.html#extendMarkdown) 拓展内部 markdown 对象，进而识别 `::: demo xxx :::` 代码块，将其包裹的示例代码直接插入 Markdown 文档等待 vue-loader 处理。
+
+这么做的问题是 **只有第一个示例的 `export default {}` 代码块会被成功识别**，因为 vue-loader 编译单个文件时只会处理首次匹配到包裹 `<script></script>` 的代码块。
 
 ### vuepress-plugin-extract-code
 
@@ -201,7 +208,7 @@ export default {
 <p>
   <a-tooltip title="JianhuiChen">
     <a href="https://github.com/calebman" target="_blank">
-      <a-avatar :src="$withBase('contributor.png')" :size="54"/>
+      <a-avatar src="https://avatars0.githubusercontent.com/u/27751088" :size="54"/>
     </a>
   </a-tooltip>
 </p>

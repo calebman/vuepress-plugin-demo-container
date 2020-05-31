@@ -187,6 +187,13 @@ Through [Vuepress clientRootMixin API](https://vuepress.vuejs.org/plugin/option-
 
 The problem with this is that **template code blocks cannot contain globally registered components in Vuepress**, and writing component library examples will necessarily rely on globally registered components.
 
+### vuepress-plugin-demo-code
+
+Repository [click here to view](https://github.com/BuptStEve/vuepress-plugin-demo-code)，The plug-in's **use method is the same as the demo-block**. The workflow of the plugin is similar to the Demo Container. Its implementation principle is:
+
+Extend the internal markdown object through [Vuepress extendMarkdown API](https://vuepress.vuejs.org/plugin/option-api.html#extendMarkdown), and then identify the `::: demo xxx :::` code block, and insert the wrapped sample code directly into the Markdown document to be processed by vue-loader.
+
+The problem with this is that **only the `export default {}` block of the first example will be successfully recognized**, because vue-loader will only process the first match to the package when compiling a single file `<script> </script>` Code block.
 
 ### vuepress-plugin-extract-code
 
@@ -201,7 +208,7 @@ This takes advantage of the features of Vuepress's ability to compile Vue compon
 <p>
   <a-tooltip title="JianhuiChen">
     <a href="https://github.com/calebman" target="_blank">
-      <a-avatar :src="$withBase('contributor.png')" :size="54"/>
+      <a-avatar src="https://avatars0.githubusercontent.com/u/27751088" :size="54"/>
     </a>
   </a-tooltip>
 </p>
