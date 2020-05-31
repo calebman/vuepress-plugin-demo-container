@@ -173,7 +173,7 @@ export default {
 ## 为什么不是...?
 
 ::: tip 有没有其他的选择
-笔者在创造 Demo Container 之前尽可能的搜索了符合上述需求的插件，找到了以下两款有用的插件，如果有其他的可用插件被笔者遗漏了，可通过提 [Issus](https://github.com/calebman/vuepress-plugin-demo-container/issues) 的方式补充，十分感谢。
+笔者在创造 Demo Container 之前尽可能的搜索了符合上述需求的插件，找到了以下几款有用的插件，如果有其他的可用插件被笔者遗漏了，可通过提 [Issus](https://github.com/calebman/vuepress-plugin-demo-container/issues) 的方式补充，十分感谢。
 :::
 
 ### vuepress-plugin-demo-block
