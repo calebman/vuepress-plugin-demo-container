@@ -41,7 +41,6 @@ The display effect refers to the implementation of Element UI document component
   <div class="vuepress-plugin-demo-container-example">
     <input
       class="repo-name-input"
-      autofocus
       autocomplete="off"
       placeholder="Change the repo name and press enter, such as vuejs/vue."
       v-model="inputRepoName"
