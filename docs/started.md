@@ -45,15 +45,25 @@ Write the following code in the Markdown file:
 ::: demo The description information of the code example is placed here, supporting the `Markdown` syntax, **the description information only supports a single line**
 ```html
 <template>
-  <div class="red-text">Vue {{ message }}</div>
+  <div class="red-center-text">
+      <p>{{ message }}</p>
+      <input v-model="message" placeholder="Input something..."/>
+  </div>
 </template>
 <script>
 export default {
-  data: () => ({ message: 'Hello World' })
+  data() {
+    return {
+      message: 'Hello Vue'
+    }
+  }
 }
 </script>
 <style>
-.red-text { color: red; }
+.red-center-text { 
+  color: #ff7875;
+  text-align: center;
+}
 </style>
 ` ` `  <= Remove the left space
 :::
@@ -64,15 +74,25 @@ The running effect is as follows
 ::: demo The description information of the code example is placed here, supporting the `Markdown` syntax, **the description information only supports a single line**
 ```html
 <template>
-  <div class="red-text">Vue {{ message }}</div>
+  <div class="red-center-text">
+      <p>{{ message }}</p>
+      <input v-model="message" placeholder="Input something..."/>
+  </div>
 </template>
 <script>
 export default {
-  data: () => ({ message: 'Hello World' })
+  data() {
+    return {
+      message: 'Hello Vue'
+    }
+  }
 }
 </script>
 <style>
-.red-text { color: red; }
+.red-center-text { 
+  color: #ff7875;
+  text-align: center;
+}
 </style>
 ```
 :::

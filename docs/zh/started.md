@@ -46,15 +46,25 @@ module.exports = {
 ::: demo 此处放置代码示例的描述信息，支持 `Markdown` 语法，**描述信息只支持单行**
 ```html
 <template>
-  <div class="red-text">Vue {{ message }}</div>
+  <div class="red-center-text">
+      <p>{{ message }}</p>
+      <input v-model="message" placeholder="Input something..."/>
+  </div>
 </template>
 <script>
 export default {
-  data: () => ({ message: 'Hello World' })
+  data() {
+    return {
+      message: 'Hello Vue'
+    }
+  }
 }
 </script>
 <style>
-.red-text { color: red; }
+.red-center-text { 
+  color: #ff7875;
+  text-align: center;
+}
 </style>
 ` ` `  <= 删除左侧空格
 :::
@@ -65,15 +75,25 @@ export default {
 ::: demo 此处放置代码示例的描述信息，支持 `Markdown` 语法，**描述信息只支持单行**
 ```html
 <template>
-  <div class="red-text">Vue {{ message }}</div>
+  <div class="red-center-text">
+      <p>{{ message }}</p>
+      <input v-model="message" placeholder="Input something..."/>
+  </div>
 </template>
 <script>
 export default {
-  data: () => ({ message: 'Hello World' })
+  data() {
+    return {
+      message: 'Hello Vue'
+    }
+  }
 }
 </script>
 <style>
-.red-text { color: red; }
+.red-center-text { 
+  color: #ff7875;
+  text-align: center;
+}
 </style>
 ```
 :::
