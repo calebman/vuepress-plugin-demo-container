@@ -17,7 +17,8 @@ module.exports = options => {
         if (tokens[idx].nesting === 1) {
           const description = m && m.length > 1 ? m[1] : '';
           const content = tokens[idx + 1].type === 'fence' ? tokens[idx + 1].content : '';
-          return `<${componentName}>
+          const encodeOptionsStr = encodeURI(JSON.stringify(options));
+          return `<${componentName} :options="JSON.parse(decodeURI('${encodeOptionsStr}'))">
             <template slot="demo"><!--pre-render-demo:${content}:pre-render-demo--></template>
             ${description ? `<div slot="description">${md.render(description).html}</div>` : ''}
             <template slot="source">
