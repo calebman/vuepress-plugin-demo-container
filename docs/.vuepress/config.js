@@ -48,7 +48,27 @@ module.exports = {
     [
       require('../../src'),
       {
-        component: 'DemoBlock'
+        component: 'DemoBlock',
+        locales: [
+          {
+            "lang": "zh-CN",
+            "demo-block": {
+              "hide-text": "隐藏",
+              "show-text": "显示",
+              "copy-text": "复制",
+              "copy-success": "成功"
+            }
+          },
+          {
+            "lang": "en-US",
+            "demo-block": {
+              "hide-text": "Hide",
+              "show-text": "Expand",
+              "copy-text": "Copy",
+              "copy-success": "Successful"
+            }
+          }
+        ]
       }
     ]
   ],
