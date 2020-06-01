@@ -1,6 +1,6 @@
 {
   "name": "vuepress-plugin-demo-container",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Vuepress plugin for demo block.",
   "main": "src/index.js",
   "scripts": {
