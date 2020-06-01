@@ -3,7 +3,7 @@
 ## component
 
 - 类型：`string`
-- 默认值：demo-block
+- 默认值：`demo-block`
 
 包裹代码与示例的组件名称。
 
@@ -57,3 +57,12 @@ module.exports = {
   </template>
 </custom-demo-block>
 ```
+
+## locales
+
+- 类型：`Array`
+- 默认值
+
+<<< @/src/i18n/default_lang.json
+
+使用 `locales` 自定义国际化配置，插件将根据 Vuepress 中匹配的 lang 字段完成语言切换，[点此查看 Vuepress 的多语言支持](https://vuepress.vuejs.org/zh/guide/i18n.html)。

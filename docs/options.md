@@ -3,7 +3,7 @@
 ## component
 
 - Type: `string`
-- Default: demo-block
+- Default: `demo-block`
 
 The component name of the warp code and example.
 
@@ -57,3 +57,12 @@ After the Demo Container is rendered, only the main structure of the rendering i
   </template>
 </custom-demo-block>
 ```
+
+## locales
+
+- Type: `Array`
+- Default
+
+<<< @/src/i18n/default_lang.json
+
+Use `locales` to customize the internationalization configuration, and the plugin will complete the language switching according to the [matching lang field in Vuepress](https://vuepress.vuejs.org/guide/i18n.html).
