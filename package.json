@@ -5,7 +5,6 @@
   "main": "src/index.js",
   "scripts": {
     "release": "standard-version",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "docs:dev": "nodemon --ext md,vue,js --watch .vuepress --watch . --exec vuepress dev docs --no-cache --debug",
     "docs:build": "vuepress build docs",
     "docs:build-preview": "vuepress build docs && anywhere -d docs/.vuepress/dist/"
@@ -51,11 +50,6 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -e $GIT_PARAMS"
-    }
-  },
-  "standard-version": {
-    "scripts": {
-      "posttag": "npm publish"
     }
   }
 }
