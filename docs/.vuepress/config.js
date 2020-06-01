@@ -45,7 +45,12 @@ module.exports = {
     }
   },
   plugins: [
-    require('../../src')
+    [
+      require('../../src'),
+      {
+        component: 'DemoBlock'
+      }
+    ]
   ],
   configureWebpack: {
     resolve: {
@@ -64,7 +69,8 @@ function genSidebarConfig (title) {
       children: [
         '',
         'started',
-        'complex'
+        'options',
+        'complex',
       ]
     }
   ]
