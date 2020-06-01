@@ -1,10 +1,12 @@
 {
   "name": "vuepress-plugin-demo-container",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Vuepress plugin for demo block.",
   "main": "src/index.js",
   "scripts": {
-    "release": "standard-version",
+    "release": "standard-version && git push --follow-tags origin master",
+    "release:minor": "standard-version --release-as minor && git push --follow-tags origin master",
+    "release:major": "standard-version --release-as major && git push --follow-tags origin master",
     "docs:dev": "nodemon --ext md,vue,js --watch .vuepress --watch . --exec vuepress dev docs --no-cache --debug",
     "docs:build": "vuepress build docs",
     "docs:build-preview": "vuepress build docs && anywhere -d docs/.vuepress/dist/"
