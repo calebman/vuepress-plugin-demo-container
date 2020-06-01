@@ -9,7 +9,7 @@ module.exports = (options = {}, ctx) => {
     enhanceAppFiles: path.resolve(__dirname, './enhanceAppFile.js'),
     chainMarkdown(config) {
       config.plugin('containers')
-        .use(demoBlockContainers)
+        .use(demoBlockContainers(options))
         .end();
     },
     extendMarkdown: md => {

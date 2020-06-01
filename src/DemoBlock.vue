@@ -6,7 +6,7 @@
     @mouseleave="hovering = false"
   >
     <div class="demo-content">
-      <slot></slot>
+      <slot name="demo"></slot>
     </div>
     <div class="meta" ref="meta">
       <div class="description" v-if="$slots.description">
