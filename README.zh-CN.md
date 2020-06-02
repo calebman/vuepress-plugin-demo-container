@@ -10,4 +10,4 @@ Demo Container 参考了 Element UI 的文档渲染，实现了和它一样的�
 * Element UI ColorPicker 组件的**文档编写示例**，[点此查看](https://github.com/ElemeFE/element/blob/dev/examples/docs/zh-CN/color-picker.md)
 * Element UI ColorPicker 组件的**文档示例预览**，[点此查看](https://element.eleme.cn/2.0/#/zh-CN/component/color-picker)
 
-[点此查看示例与使用文档](https://calebman.github.io/vuepress-plugin-demo-container/zh/)
+[点此查看示例与使用文档](https://docs.chenjianhui.site/vuepress-plugin-demo-container/zh/)
