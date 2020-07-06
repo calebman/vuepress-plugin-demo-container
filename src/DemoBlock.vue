@@ -42,7 +42,6 @@
 </template>
 
 <script type="text/babel">
-import './style/index.less'
 import defaultLang from './i18n/default_lang.json';
 export default {
   data() {
@@ -157,3 +156,157 @@ export default {
   }
 };
 </script>
+<style scoped>
+.demo-block {
+  border: solid 1px #ebebeb;
+  border-radius: 3px;
+  transition: 0.2s;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.demo-block.hover {
+  box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6), 0 2px 4px 0 rgba(232, 237, 250, 0.5);
+}
+.demo-block code {
+  font-family: Menlo, Monaco, Consolas, Courier, monospace;
+}
+.demo-block .demo-button {
+  float: right;
+}
+.demo-block .demo-content {
+  padding: 24px;
+}
+.demo-block .meta {
+  background-color: #282c34;
+  border: solid 1px #ebebeb;
+  border-radius: 3px;
+  overflow: hidden;
+  height: 0;
+  transition: height 0.2s;
+}
+.demo-block .description {
+  padding: 20px;
+  box-sizing: border-box;
+  border: solid 1px #ebebeb;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 22px;
+  color: #666;
+  word-break: break-word;
+  margin: 10px;
+  background-color: #fafafa;
+}
+.demo-block .code-content pre[class*="language-"] {
+  padding: 16px;
+  margin: 8px 0;
+}
+.demo-block .demo-block-control {
+  border-top: solid 1px #eaeefb;
+  height: 44px;
+  box-sizing: border-box;
+  background-color: #fafafa;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  text-align: center;
+  margin-top: -1px;
+  color: #d3dce6;
+  cursor: pointer;
+  position: relative;
+}
+.demo-block .demo-block-control.is-fixed {
+  position: fixed;
+  bottom: 0;
+  width: 660px;
+  z-index: 999;
+}
+.demo-block .demo-block-control .icon {
+  font-family: element-icons !important;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: baseline;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+}
+.demo-block .demo-block-control .caret-top::before {
+  content: "";
+  position: absolute;
+  right: 50%;
+  width: 0;
+  height: 0;
+  border-bottom: 6px solid #ccc;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+}
+.demo-block .demo-block-control .caret-bottom::before {
+  content: "";
+  position: absolute;
+  right: 50%;
+  width: 0;
+  height: 0;
+  border-top: 6px solid #ccc;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+}
+.demo-block .demo-block-control i {
+  font-size: 16px;
+  line-height: 44px;
+  transition: 0.3s;
+}
+.demo-block .demo-block-control i.hovering {
+  transform: translateX(-40px);
+}
+.demo-block .demo-block-control > span {
+  position: absolute;
+  transform: translateX(-30px);
+  font-size: 14px;
+  line-height: 44px;
+  transition: 0.3s;
+  display: inline-block;
+}
+.demo-block .demo-block-control .copy-action {
+  right: 0px;
+  color: #409eff;
+}
+.demo-block .demo-block-control.copying {
+  transform: translateX(-44px);
+}
+.demo-block .demo-block-control .copy-action-success {
+  color: #f5222d;
+}
+.demo-block .demo-block-control:hover {
+  color: #409eff;
+  background-color: #f9fafc;
+}
+.demo-block .demo-block-control .text-slide-enter,
+.demo-block .demo-block-control .text-slide-leave-active {
+  opacity: 0;
+  transform: translateX(10px);
+}
+.demo-block .demo-block-control .bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.demo-block .demo-block-control .control-button {
+  line-height: 26px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 14px;
+  padding-left: 5px;
+  padding-right: 25px;
+}
+
+</style>
