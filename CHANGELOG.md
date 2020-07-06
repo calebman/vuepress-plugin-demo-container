@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/calebman/vuepress-plugin-demo-container/compare/v0.1.0...v0.1.1) (2020-07-06)
+
+
+### Bug Fixes
+
+* **demoblock.vue:** fix plugin usage bug ([2d8ded9](https://github.com/calebman/vuepress-plugin-demo-container/commit/2d8ded99d7cd1c9f8e345ff07a6ad66650d02182)), closes [#3](https://github.com/calebman/vuepress-plugin-demo-container/issues/3)
+
 ## [0.1.0](https://github.com/calebman/vuepress-plugin-demo-container/compare/v0.0.1...v0.1.0) (2020-06-01)
 
 
