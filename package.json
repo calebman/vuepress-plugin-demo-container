@@ -7,7 +7,7 @@
     "release": "standard-version && git push --follow-tags origin master",
     "release:minor": "standard-version --release-as minor && git push --follow-tags origin master",
     "release:major": "standard-version --release-as major && git push --follow-tags origin master",
-    "docs:dev": "nodemon --ext md,vue,js --watch .vuepress --watch . --exec vuepress dev docs --no-cache --debug",
+    "docs:dev": "vuepress dev docs --no-cache --debug",
     "docs:build": "vuepress build docs",
     "docs:build-preview": "vuepress build docs && anywhere -d docs/.vuepress/dist/"
   },
@@ -27,8 +27,7 @@
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "markdown-it-container": "^2.0.0",
-    "nodemon": "^2.0.4",
-    "vuepress": "1.5.0"
+    "vuepress": "1.5.3"
   },
   "keywords": [
     "documentation",
