@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/calebman/vuepress-plugin-demo-container/compare/v0.1.1...v0.2.0) (2020-08-19)
+
+
+### Bug Fixes
+
+* **demoblick:** solve the problem of code line number style ([675666e](https://github.com/calebman/vuepress-plugin-demo-container/commit/675666eac7c20bc853be8b328b4b1134d91fa1af)), closes [#4](https://github.com/calebman/vuepress-plugin-demo-container/issues/4)
+
 ### [0.1.1](https://github.com/calebman/vuepress-plugin-demo-container/compare/v0.1.0...v0.1.1) (2020-07-06)
 
 
