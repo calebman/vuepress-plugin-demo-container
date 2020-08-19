@@ -196,10 +196,6 @@ export default {
   margin: 10px;
   background-color: #fafafa;
 }
-.demo-block .code-content pre[class*="language-"] {
-  padding: 16px;
-  margin: 8px 0;
-}
 .demo-block .demo-block-control {
   border-top: solid 1px #eaeefb;
   height: 44px;
