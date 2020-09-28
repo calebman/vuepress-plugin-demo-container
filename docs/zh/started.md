@@ -8,14 +8,18 @@
 
 ### 安装插件
 
-使用 `yarn` 安装 `vuepress-plugin-demo-container` 组件：
+使用 `yarn` 安装 `vuepress-plugin-block-winyh` 组件：
+
 ```bash
-yarn add vuepress-plugin-demo-container -D
+yarn add vuepress-plugin-block-winyh -D
 ```
+
 或者使用 `npm` 安装它：
+
 ```bash
-npm i vuepress-plugin-demo-container --save-dev
+npm i vuepress-plugin-block-winyh --save-dev
 ```
+
 如果你的网络环境不佳，推荐使用 [cnpm](https://github.com/cnpm/cnpm)。
 
 ### 配置插件
@@ -42,58 +46,59 @@ module.exports = {
 
 在 Markdown 文件中编写以下代码：
 
-```html
-::: demo 此处放置代码示例的描述信息，支持 `Markdown` 语法，**描述信息只支持单行**
-```html
+````html
+::: demo 此处放置代码示例的描述信息，支持 `Markdown`
+语法，**描述信息只支持单行** ```html
 <template>
   <div class="red-center-text">
-      <p>{{ message }}</p>
-      <input v-model="message" placeholder="Input something..."/>
+    <p>{{ message }}</p>
+    <input v-model="message" placeholder="Input something..." />
   </div>
 </template>
 <script>
-export default {
-  data() {
-    return {
-      message: 'Hello Vue'
-    }
-  }
-}
+  export default {
+    data() {
+      return {
+        message: "Hello Vue",
+      };
+    },
+  };
 </script>
 <style>
-.red-center-text { 
-  color: #ff7875;
-  text-align: center;
-}
+  .red-center-text {
+    color: #ff7875;
+    text-align: center;
+  }
 </style>
-` ` `  <= 删除左侧空格
-:::
-```
+` ` ` <= 删除左侧空格 :::
+````
 
 运行效果如下
 
 ::: demo 此处放置代码示例的描述信息，支持 `Markdown` 语法，**描述信息只支持单行**
+
 ```html
 <template>
   <div class="red-center-text">
-      <p>{{ message }}</p>
-      <input v-model="message" placeholder="Input something..."/>
+    <p>{{ message }}</p>
+    <input v-model="message" placeholder="Input something..." />
   </div>
 </template>
 <script>
-export default {
-  data() {
-    return {
-      message: 'Hello Vue'
-    }
-  }
-}
+  export default {
+    data() {
+      return {
+        message: "Hello Vue",
+      };
+    },
+  };
 </script>
 <style>
-.red-center-text { 
-  color: #ff7875;
-  text-align: center;
-}
+  .red-center-text {
+    color: #ff7875;
+    text-align: center;
+  }
 </style>
 ```
+
 :::

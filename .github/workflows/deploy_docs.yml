@@ -1,18 +1,18 @@
 name: Deploy plugin docs
 on:
   push:
-    branches:    
+    branches:
       - master
 jobs:
   build-and-deploy-docs:
     runs-on: ubuntu-18.04
-    steps: 
+    steps:
       - uses: actions/checkout@master
 
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: "12.x"
 
       - name: Build with vuepress
         run: |
@@ -23,14 +23,14 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/.vuepress/dist/vuepress-plugin-demo-container/
+          publish_dir: docs/.vuepress/dist/vuepress-plugin-block-winyh/
 
       - name: Deploy to server
         uses: easingthemes/ssh-deploy@v2.1.1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           ARGS: "-rltgoDzvO --delete"
-          SOURCE: "docs/.vuepress/dist/vuepress-plugin-demo-container/"
+          SOURCE: "docs/.vuepress/dist/vuepress-plugin-block-winyh/"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}

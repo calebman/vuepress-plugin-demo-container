@@ -9,23 +9,25 @@ Vuepress cannot render multiple `export default {}` code blocks in Markdown;
 :::
 
 The Demo Container refers to Element UI's document rendering and implements the same syntax as it can be used to write sample syntax directly in Markdown.
-* Element UI ColorPicker component **documentation example**,[click here to view](https://github.com/ElemeFE/element/blob/dev/examples/docs/en-US/color-picker.md)
-* Element UI ColorPicker component **document sample preview**,[click here to view](https://element.eleme.cn/2.0/#/en-US/component/color-picker)。
 
+- Element UI ColorPicker component **documentation example**,[click here to view](https://github.com/ElemeFE/element/blob/dev/examples/docs/en-US/color-picker.md)
+- Element UI ColorPicker component **document sample preview**,[click here to view](https://element.eleme.cn/2.0/#/en-US/component/color-picker)。
 
 ## How does it work?
 
 The Demo Container uses Vuepress's [chainMarkdown, extendMarkdown API](https://vuepress.vuejs.org/plugin/option-api.html#extendmarkdown) to expand its internal markdown object and does the following:
 
 1. Based on [markdown-it-container](https://github.com/markdown-it/markdown-it-container), a plug-in that recognizes the following code blocks is built
+
 ```
 :::demo xxx
 xxx
 :::
 ```
-Wrap the `<demo-block> </demo-block>` component for it, and pick up the sample code using `<!-Pre-render-demo: $ {content}: pre-render-demo->` comments Cache mode, wait for subsequent reading, specific implementation [click here to view](https://github.com/calebman/vuepress-plugin-demo-container/blob/master/src/common/container.js);
 
-2. Expand the markdown.render method, based on its rendering results, read the sample code annotated by `pre-render-demo` and use [vue-template-compiler](https://github.com/vuejs/vue/tree/dev/packages/vue-template-compiler) compile it into a Redner Function and introduce it as a subcomponent of the entire sample page. The output of the expanded method is a code block that conforms to Vue Template syntax, specific implementation [click here to view](https://github.com/calebman/vuepress-plugin-demo-container/blob/master/src/common/render.js);
+Wrap the `<demo-block> </demo-block>` component for it, and pick up the sample code using `<!-Pre-render-demo: $ {content}: pre-render-demo->` comments Cache mode, wait for subsequent reading, specific implementation [click here to view](https://github.com/winyh/vuepress-plugin-block-winyh/blob/master/src/common/container.js);
+
+2. Expand the markdown.render method, based on its rendering results, read the sample code annotated by `pre-render-demo` and use [vue-template-compiler](https://github.com/vuejs/vue/tree/dev/packages/vue-template-compiler) compile it into a Redner Function and introduce it as a subcomponent of the entire sample page. The output of the expanded method is a code block that conforms to Vue Template syntax, specific implementation [click here to view](https://github.com/winyh/vuepress-plugin-block-winyh/blob/master/src/common/render.js);
 
 3. The sample page code will be processed by [vue-loader](https://vue-loader.vuejs.org/guide/) and compiled into the final document
 
@@ -36,9 +38,10 @@ The display effect refers to the implementation of Element UI document component
 :::
 
 ::: demo This example refers to the [GitHub submission](https://vuejs.org/v2/examples/commits.html) implementation in the example of the `Vue` official document, uses the Github API to get the latest submission data of the repository, and displays them in a list.
+
 ```html
 <template>
-  <div class="vuepress-plugin-demo-container-example">
+  <div class="vuepress-plugin-block-winyh-example">
     <input
       class="repo-name-input"
       autocomplete="off"
@@ -48,7 +51,13 @@ The display effect refers to the implementation of Element UI document component
     />
     <h1>Latest Commits</h1>
     <span v-for="(branch, i) in branches" :key="`branch${i}`" class="branch">
-      <input type="radio" :id="branch" :value="branch" name="branch" v-model="currentBranch" />
+      <input
+        type="radio"
+        :id="branch"
+        :value="branch"
+        name="branch"
+        v-model="currentBranch"
+      />
       <label :for="branch">{{ branch }}</label>
     </span>
     <p>{{ repoName }}@{{ currentBranch }}</p>
@@ -58,12 +67,16 @@ The display effect refers to the implementation of Element UI document component
       <p v-else-if="commits.length === 0">Found the repository is no commit.</p>
       <ul v-else>
         <li v-for="(record, i) in commits" :key="`record${i}`">
-          <a :href="record.html_url" target="_blank" class="commit">{{ record.sha.slice(0, 7) }}</a>
+          <a :href="record.html_url" target="_blank" class="commit"
+            >{{ record.sha.slice(0, 7) }}</a
+          >
           -
           <span class="message">{{ record.commit.message | truncate }}</span>
           <br />by
           <span class="author">
-            <a :href="record.author && record.author.html_url" target="_blank">{{ record.commit.author.name }}</a>
+            <a :href="record.author && record.author.html_url" target="_blank"
+              >{{ record.commit.author.name }}</a
+            >
           </span>
           at
           <span class="date">{{ record.commit.author.date | formatDate }}</span>
@@ -74,116 +87,118 @@ The display effect refers to the implementation of Element UI document component
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      inputRepoName: '',
-      repoName: 'calebman/vuepress-plugin-demo-container',
-      branches: ['master', 'dev'],
-      currentBranch: 'master',
-      loading: false,
-      commits: [],
-      errMsg: null
-    };
-  },
-
-  mounted() {
-    this.fetchData();
-  },
-
-  watch: {
-    repoName: 'fetchData',
-    currentBranch: 'fetchData'
-  },
-
-  filters: {
-    truncate: function(v) {
-      var newline = v.indexOf('\n');
-      return newline > 0 ? v.slice(0, newline) : v;
-    },
-    formatDate: function(v) {
-      return v.replace(/T|Z/g, ' ');
-    }
-  },
-
-  methods: {
-    changeRepoName() {
-      this.repoName = this.inputRepoName;
-    },
-    fetchData() {
-      this.loading = true;
-      const apiURL = `https://api.github.com/repos/${this.repoName}/commits?per_page=3&sha=${this.currentBranch}`;
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', apiURL);
-      xhr.onerror = err => {
-        this.errMsg = '连接错误,过于频繁的请求可能被拒绝';
-      }
-      xhr.onload = () => {
-        const resp = JSON.parse(xhr.responseText);
-        this.loading = false;
-        if (Array.isArray(resp)) {
-          this.errMsg = null;
-          this.commits = resp
-        } else {
-          this.errMsg = resp.message;
-        }
+  export default {
+    data() {
+      return {
+        inputRepoName: "",
+        repoName: "winyh/vuepress-plugin-block-winyh",
+        branches: ["master", "dev"],
+        currentBranch: "master",
+        loading: false,
+        commits: [],
+        errMsg: null,
       };
-      xhr.send();
-    }
-  }
-};
+    },
+
+    mounted() {
+      this.fetchData();
+    },
+
+    watch: {
+      repoName: "fetchData",
+      currentBranch: "fetchData",
+    },
+
+    filters: {
+      truncate: function (v) {
+        var newline = v.indexOf("\n");
+        return newline > 0 ? v.slice(0, newline) : v;
+      },
+      formatDate: function (v) {
+        return v.replace(/T|Z/g, " ");
+      },
+    },
+
+    methods: {
+      changeRepoName() {
+        this.repoName = this.inputRepoName;
+      },
+      fetchData() {
+        this.loading = true;
+        const apiURL = `https://api.github.com/repos/${this.repoName}/commits?per_page=3&sha=${this.currentBranch}`;
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", apiURL);
+        xhr.onerror = (err) => {
+          this.errMsg = "连接错误,过于频繁的请求可能被拒绝";
+        };
+        xhr.onload = () => {
+          const resp = JSON.parse(xhr.responseText);
+          this.loading = false;
+          if (Array.isArray(resp)) {
+            this.errMsg = null;
+            this.commits = resp;
+          } else {
+            this.errMsg = resp.message;
+          }
+        };
+        xhr.send();
+      },
+    },
+  };
 </script>
 
 <style>
-.vuepress-plugin-demo-container-example .branch {
-  margin-right: 8px;
-}
-.vuepress-plugin-demo-container-example .danger-msg {
-  color: #f56c6c;
-}
-.repo-name-input,
-.edit {
-  position: relative;
-  margin: 0;
-  width: 100%;
-  font-size: 20px;
-  font-family: inherit;
-  font-weight: inherit;
-  line-height: 1.4em;
-  border: 0;
-  color: inherit;
-  padding: 6px;
-  border: 1px solid #999;
-  box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  .vuepress-plugin-block-winyh-example .branch {
+    margin-right: 8px;
+  }
+  .vuepress-plugin-block-winyh-example .danger-msg {
+    color: #f56c6c;
+  }
+  .repo-name-input,
+  .edit {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    font-size: 20px;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: 1.4em;
+    border: 0;
+    color: inherit;
+    padding: 6px;
+    border: 1px solid #999;
+    box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-.repo-name-input {
-  padding: 16px;
-  margin: 8px 0;
-  background: rgba(0, 0, 0, 0.003);
-  box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
-}
+  .repo-name-input {
+    padding: 16px;
+    margin: 8px 0;
+    background: rgba(0, 0, 0, 0.003);
+    box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
+  }
 </style>
 ```
+
 :::
 
 ## Why not...?
 
 ::: tip Are there any other options
-Before I created the Demo Container, I searched for plug-ins that meet the above requirements as much as possible, and found some useful plugins. If there are other available plug-ins that have been omitted by the author, I can add it by mentioning [Issus](https://github.com/calebman/vuepress-plugin-demo-container/issues). Thank you very much.
+Before I created the Demo Container, I searched for plug-ins that meet the above requirements as much as possible, and found some useful plugins. If there are other available plug-ins that have been omitted by the author, I can add it by mentioning [Issus](https://github.com/winyh/vuepress-plugin-block-winyh/issues). Thank you very much.
 :::
 
-### vuepress-plugin-demo-block
+### vuepress-plugin-block-winyh
 
-Repository [click here to view](https://github.com/xiguaxigua/vuepress-plugin-demo-block),the **use of this plugin is exactly the same as the author's ideal way**, and its implementation principle is
+Repository [click here to view](https://github.com/xiguaxigua/vuepress-plugin-block-winyh),the **use of this plugin is exactly the same as the author's ideal way**, and its implementation principle is
 
 Through [Vuepress clientRootMixin API](https://vuepress.vuejs.org/plugin/option-api.html#clientrootmixin) mixed into the mounted and updated life cycle of the page, read the sample code to separate the `template`,` script`, `style` code blocks:
-* The code block wrapped by the template is inserted directly into the example node;
-* The code block wrapped by script compiles the Vue object through Vue.extend, and then calls its $ mount () method to mount it to the sample dom;
-* The code block wrapped in style is inserted directly into the document;
+
+- The code block wrapped by the template is inserted directly into the example node;
+- The code block wrapped by script compiles the Vue object through Vue.extend, and then calls its \$ mount () method to mount it to the sample dom;
+- The code block wrapped in style is inserted directly into the document;
 
 The problem with this is that **template code blocks cannot contain globally registered components in Vuepress**, and writing component library examples will necessarily rely on globally registered components.
 
@@ -207,7 +222,7 @@ This takes advantage of the features of Vuepress's ability to compile Vue compon
 
 <p>
   <a-tooltip title="JianhuiChen">
-    <a href="https://github.com/calebman" target="_blank">
+    <a href="https://github.com/winyh" target="_blank">
       <a-avatar src="https://avatars0.githubusercontent.com/u/27751088" :size="54"/>
     </a>
   </a-tooltip>

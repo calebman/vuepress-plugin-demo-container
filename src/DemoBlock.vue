@@ -1,7 +1,7 @@
 <template>
   <div
     class="demo-block"
-    :class="[blockClass, { 'hover': hovering }]"
+    :class="[blockClass, { hover: hovering }]"
     @mouseenter="hovering = true"
     @mouseleave="hovering = false"
   >
@@ -19,12 +19,12 @@
     <div
       class="demo-block-control"
       :class="{ 'is-fixed': fixedControl }"
-      :style="{ 'width': fixedControl ? `${codeContentWidth}px` : 'unset' }"
+      :style="{ width: fixedControl ? `${codeContentWidth}px` : 'unset' }"
       ref="control"
       @click="isExpanded = !isExpanded"
     >
       <transition name="arrow-slide">
-        <i :class="[iconClass, { 'hovering': hovering }, 'icon']"></i>
+        <i :class="[iconClass, { hovering: hovering }, 'icon']"></i>
       </transition>
       <transition name="text-slide">
         <span v-show="hovering">{{ controlText }}</span>
@@ -33,16 +33,19 @@
         v-show="!copied"
         :class="['copy-action', { 'copying ': copied }]"
         @click.stop="copyCode"
-      >{{ copiedText }}</span>
+        >{{ copiedText }}</span
+      >
       <transition name="bounce">
-        <span v-show="copied" class="copy-action copy-action-success">{{ copiedText }}</span>
+        <span v-show="copied" class="copy-action copy-action-success">{{
+          copiedText
+        }}</span>
       </transition>
     </div>
   </div>
 </template>
 
 <script type="text/babel">
-import defaultLang from './i18n/default_lang.json';
+import defaultLang from "./i18n/default_lang.json";
 export default {
   data() {
     return {
@@ -51,23 +54,25 @@ export default {
       isExpanded: false,
       fixedControl: false,
       codeContentWidth: 0,
-      scrollParent: null
+      scrollParent: null,
     };
   },
   props: {
     options: {
       type: Object,
       default: () => {
-        return {}
-      }
-    }
+        return {};
+      },
+    },
   },
   computed: {
     compoLang() {
-      return this.options.locales || defaultLang
+      return this.options.locales || defaultLang;
     },
     langConfig() {
-        return this.compoLang.filter(config => config.lang === this.$lang)[0]['demo-block'];
+      return this.compoLang.filter((config) => config.lang === this.$lang)[0][
+        "demo-block"
+      ];
     },
     blockClass() {
       return `demo-${this.$lang} demo-${this.$router.currentRoute.path
@@ -78,10 +83,10 @@ export default {
       return this.isExpanded ? "caret-top" : "caret-bottom";
     },
     controlText() {
-      return this.isExpanded ? this.langConfig['hide-text'] : this.langConfig['show-text'];
+      return this.isExpanded ? "隐藏" : "展示";
     },
     copiedText() {
-      return this.copied ? this.langConfig['copy-success'] : this.langConfig['copy-text'];
+      return this.copied ? "复制成功" : "代码复制";
     },
     codeArea() {
       return this.$el.getElementsByClassName("meta")[0];
@@ -95,7 +100,7 @@ export default {
         );
       }
       return this.$el.getElementsByClassName("code-content")[0].clientHeight;
-    }
+    },
   },
   methods: {
     copyCode() {
@@ -121,8 +126,8 @@ export default {
     },
     removeScrollHandler() {
       this.scrollParent &&
-        this.scrollParent.removeEventListener('scroll', this.scrollHandler);
-    }
+        this.scrollParent.removeEventListener("scroll", this.scrollHandler);
+    },
   },
   watch: {
     isExpanded(val) {
@@ -136,16 +141,16 @@ export default {
       setTimeout(() => {
         this.scrollParent = document;
         this.scrollParent &&
-          this.scrollParent.addEventListener('scroll', this.scrollHandler);
+          this.scrollParent.addEventListener("scroll", this.scrollHandler);
         this.scrollHandler();
       }, 200);
-    }
+    },
   },
   mounted() {
     this.$nextTick(() => {
-      let codeContent = this.$el.getElementsByClassName('code-content')[0];
-      this.codeContentWidth = this.$el.offsetWidth
-      if (this.$el.getElementsByClassName('description').length === 0) {
+      let codeContent = this.$el.getElementsByClassName("code-content")[0];
+      this.codeContentWidth = this.$el.offsetWidth;
+      if (this.$el.getElementsByClassName("description").length === 0) {
         codeContent.style.width = "100%";
         codeContent.borderRight = "none";
       }
@@ -153,7 +158,7 @@ export default {
   },
   beforeDestroy() {
     this.removeScrollHandler();
-  }
+  },
 };
 </script>
 <style scoped>
@@ -165,7 +170,8 @@ export default {
   margin-bottom: 15px;
 }
 .demo-block.hover {
-  box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6), 0 2px 4px 0 rgba(232, 237, 250, 0.5);
+  box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6),
+    0 2px 4px 0 rgba(232, 237, 250, 0.5);
 }
 .demo-block code {
   font-family: Menlo, Monaco, Consolas, Courier, monospace;
@@ -308,5 +314,4 @@ export default {
   padding-left: 5px;
   padding-right: 25px;
 }
-
 </style>

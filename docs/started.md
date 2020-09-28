@@ -8,13 +8,16 @@ Please refer to the official Vuepress documentation, [click here to view](https:
 
 ### Install the plugin
 
-Use `yarn` to install the` vuepress-plugin-demo-container` component:
+Use `yarn` to install the` vuepress-plugin-block-winyh` component:
+
 ```bash
-yarn add vuepress-plugin-demo-container -D
+yarn add vuepress-plugin-block-winyh -D
 ```
+
 Or use `npm` to install it:
+
 ```bash
-npm i vuepress-plugin-demo-container --save-dev
+npm i vuepress-plugin-block-winyh --save-dev
 ```
 
 ### Configure plugin
@@ -41,58 +44,60 @@ In order to show how to write an example, the three points used to mark the end 
 
 Write the following code in the Markdown file:
 
-```html
-::: demo The description information of the code example is placed here, supporting the `Markdown` syntax, **the description information only supports a single line**
-```html
+````html
+::: demo The description information of the code example is placed here,
+supporting the `Markdown` syntax, **the description information only supports a
+single line** ```html
 <template>
   <div class="red-center-text">
-      <p>{{ message }}</p>
-      <input v-model="message" placeholder="Input something..."/>
+    <p>{{ message }}</p>
+    <input v-model="message" placeholder="Input something..." />
   </div>
 </template>
 <script>
-export default {
-  data() {
-    return {
-      message: 'Hello Vue'
-    }
-  }
-}
+  export default {
+    data() {
+      return {
+        message: "Hello Vue",
+      };
+    },
+  };
 </script>
 <style>
-.red-center-text { 
-  color: #ff7875;
-  text-align: center;
-}
+  .red-center-text {
+    color: #ff7875;
+    text-align: center;
+  }
 </style>
-` ` `  <= Remove the left space
-:::
-```
+` ` ` <= Remove the left space :::
+````
 
 The running effect is as follows
 
 ::: demo The description information of the code example is placed here, supporting the `Markdown` syntax, **the description information only supports a single line**
+
 ```html
 <template>
   <div class="red-center-text">
-      <p>{{ message }}</p>
-      <input v-model="message" placeholder="Input something..."/>
+    <p>{{ message }}</p>
+    <input v-model="message" placeholder="Input something..." />
   </div>
 </template>
 <script>
-export default {
-  data() {
-    return {
-      message: 'Hello Vue'
-    }
-  }
-}
+  export default {
+    data() {
+      return {
+        message: "Hello Vue",
+      };
+    },
+  };
 </script>
 <style>
-.red-center-text { 
-  color: #ff7875;
-  text-align: center;
-}
+  .red-center-text {
+    color: #ff7875;
+    text-align: center;
+  }
 </style>
 ```
+
 :::

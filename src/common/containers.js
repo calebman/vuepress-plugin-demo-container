@@ -18,17 +18,10 @@ module.exports = (options) => {
           const description = m && m.length > 1 ? m[1] : "";
           const content =
             tokens[idx + 1].type === "fence" ? tokens[idx + 1].content : "";
-          const encodeOptionsStr = encodeURI(JSON.stringify(options));
 
-          if (
-            !content &&
-            tokens[idx + 1].type === "fence" &&
-            tokens[idx + 1].src
-          ) {
-            const filepath = tokens[idx + 1].src;
-            source = fs.readFileSync(filepath).toString();
-            content = source;
-          }
+          const filepath =
+            tokens[idx + 1].type === "fence" ? tokens[idx + 1].src : "";
+          const source = fs.readFileSync(filepath).toString();
 
           const encodeOptionsStr = encodeURI(JSON.stringify(options));
 
