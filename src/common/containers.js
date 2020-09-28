@@ -16,8 +16,6 @@ module.exports = (options) => {
         const m = tokens[idx].info.trim().match(/^demo\s*(.*)$/);
         if (tokens[idx].nesting === 1) {
           const description = m && m.length > 1 ? m[1] : "";
-          const content =
-            tokens[idx + 1].type === "fence" ? tokens[idx + 1].content : "";
 
           const filepath =
             tokens[idx + 1].type === "fence" ? tokens[idx + 1].src : "";
@@ -26,7 +24,7 @@ module.exports = (options) => {
           const encodeOptionsStr = encodeURI(JSON.stringify(options));
 
           return `<${componentName} :options="JSON.parse(decodeURI('${encodeOptionsStr}'))">
-            <template slot="demo"><!--pre-render-demo:${content}:pre-render-demo--></template>
+            <template slot="demo"><!--pre-render-demo:${source}:pre-render-demo--></template>
             ${
               description
                 ? `<div slot="description">${md.render(description).html}</div>`
